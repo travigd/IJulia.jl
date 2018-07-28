@@ -9,6 +9,9 @@ jupyter=""
 try
 #######################################################################
 
+# skip Jupyter installation if requested
+if !haskey(ENV, "IJULIA_SKIP_JUPYTER")
+
 # Make sure Python uses UTF-8 output for Unicode paths
 ENV["PYTHONIOENCODING"] = "UTF-8"
 
@@ -113,6 +116,10 @@ end
 write("JUPYTER", jupyter)
 
 #######################################################################
+
+# if !haskey(ENV, "IJULIA_SKIP_JUPYTER")
+end
+
 catch
 isfile("deps.jl") && rm("deps.jl") # remove deps.jl file on build error
 rethrow()
